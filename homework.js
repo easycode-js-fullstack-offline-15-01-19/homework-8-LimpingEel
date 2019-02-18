@@ -80,3 +80,103 @@ let element = {
 };
 
 let getElementHeight = element.getHeight.bind(element);
+
+// Замыкания. Задачи.
+
+// #1
+function minus(a) {
+	return function (b) {
+		return a - b;
+	}
+}
+
+// #2
+function multiplyMaker(a)  {
+	let number = a;
+	return function (b) {
+		return number *= b
+	}
+}
+
+const multiply = multiplyMaker(2);
+
+// #3
+const string = (function () {
+	let string
+
+
+	function setString(str = '') {
+	 	if (typeof str == 'number') {
+	 		return string = str + ''
+	 	} else {
+	 		return string = str;
+	 	}
+	};
+
+	function getString() { return string };
+
+	function getLength() { return string.length };
+
+	function getNewString() {
+		let newString = '';
+		for (let i = string.length - 1; i >= 0; i--) {
+			newString += string[i]
+		}
+		return newString
+	}
+	return {
+		setString: setString,
+		getString: getString,
+		getLength: getLength,
+		getNewString: getNewString
+	}
+}());
+
+// #4
+const calc = (function () {
+	let number
+
+	function setNumber(val) {
+		number = val;
+		return this
+	};
+
+	function plus(val) {
+		number += val;
+		return this
+	};
+
+	function minus(val) {
+		number -= val;
+		return this
+	};
+
+	function multiplication(val) {
+		number *= val;
+		return this
+	};
+
+	function division(val) {
+		number /= val;
+		return this
+	};
+
+	function exponent(val) {
+		number = Math.pow(number, val);
+		return this
+	}
+
+	function getNumber() {
+		return +number.toFixed(1)
+	}
+
+	return {
+		setNumber: setNumber,
+		plus: plus,
+		minus: minus,
+		multiplication: multiplication,
+		division: division,
+		exponent: exponent,
+		getNumber: getNumber
+	}
+}())
